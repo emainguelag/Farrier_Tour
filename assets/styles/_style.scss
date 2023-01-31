@@ -1,0 +1,24 @@
+$title-color: $primary;
+$--bs-nav-link-color: $gray-900;
+$--bs-nav-link-hover-color: $gray-900;
+
+h1 {
+    color: $title-color;
+}
+
+.nav {
+    background-color: $primary;
+    color: $gray-900;
+    $--bs-nav-link-color: $gray-900;
+    $--bs-link-color: $gray-900;
+    $--bs-link-hover-color: $gray-900;
+}
+
+.nav-item {
+    color: $gray-900;
+}
+
+.nav-link {
+    color: $gray-900;
+    $--bs-nav-link-color: $gray-900;
+}
