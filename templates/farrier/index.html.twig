@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Farrier index{% endblock %}
+
+{% block body %}
+    <h1>Farrier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for farrier in farriers %}
+            <tr>
+                <td>{{ farrier.id }}</td>
+                <td>{{ farrier.name }}</td>
+                <td>{{ farrier.role }}</td>
+                <td>
+                    <a href="{{ path('app_farrier_show', {'id': farrier.id}) }}">show</a>
+                    <a href="{{ path('app_farrier_edit', {'id': farrier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_farrier_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Farrier{% endblock %}
+
+{% block body %}
+    <h1>Create new Farrier</h1>
+
+    {{ include('farrier/_form.html.twig') }}
+
+    <a href="{{ path('app_farrier_index') }}">back to list</a>
+{% endblock %}

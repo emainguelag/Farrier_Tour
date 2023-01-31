@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Hoster{% endblock %}
+
+{% block body %}
+    <h1>Edit Hoster</h1>
+
+    {{ include('hoster/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_hoster_index') }}">back to list</a>
+
+    {{ include('hoster/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Farrier{% endblock %}
+
+{% block body %}
+    <h1>Edit Farrier</h1>
+
+    {{ include('farrier/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_farrier_index') }}">back to list</a>
+
+    {{ include('farrier/_delete_form.html.twig') }}
+{% endblock %}
