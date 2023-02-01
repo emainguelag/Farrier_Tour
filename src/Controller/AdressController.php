@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Adress;
 use App\Form\AdressType;
 use App\Repository\AdressRepository;
+use App\Service\Coordinates;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,13 +23,22 @@ class AdressController extends AbstractController
     }
 
     #[Route('/new', name: 'app_adress_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, AdressRepository $adressRepository): Response
+    public function new(Request $request, AdressRepository $adressRepository, Coordinates $coordinatesService): Response
     {
         $adress = new Adress();
         $form = $this->createForm(AdressType::class, $adress);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $location = $adress->getCity() . ', ' . $adress->getCountry();
+
+            $coordinates = $coordinatesService->geocode($location);
+
+            if ($coordinates !== null) {
+                $adress->setLatitude($coordinates['lat']);
+                $adress->setLongitude($coordinates['lon']);
+            }
+
             $adressRepository->save($adress, true);
 
             return $this->redirectToRoute('app_adress_index', [], Response::HTTP_SEE_OTHER);
