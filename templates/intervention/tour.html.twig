@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma tournée{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+	{{ encore_entry_script_tags('map') }}
+{% endblock %}
+
+{% block body %}
+    <h1>Ma tournée</h1>
+    <p class="lead">Pour préparer mon trajet du jour.</p>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Début</th>
+                <th>Cheval</th>
+                <th>Prestation</th>
+                <th>Lieu</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for intervention in interventions %}
+            <tr data-lat="{{ intervention.horse.hoster.adressHoster.latitude }}" data-lng="{{ intervention.horse.hoster.adressHoster.longitude }}">
+                <td>{{ intervention.startDate ? intervention.startDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ intervention.horse.name }}</td>
+                <td>{{ intervention.service }}</td>
+                <td>{{ intervention.horse.hoster.adressHoster.city }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div id="map">
+    map goes here
+    </div>
+{% endblock %}

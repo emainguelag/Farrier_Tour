@@ -1,0 +1,11 @@
+@import "~bootstrap";
+@import "~leaflet";
+@import "~@ansur/leaflet-pulse-icon/dist/L.Icon.Pulse.css";
+
+#map {
+    background-color: #e83e8c;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 300px;
+}
