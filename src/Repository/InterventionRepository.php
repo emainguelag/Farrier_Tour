@@ -39,6 +39,18 @@ class InterventionRepository extends ServiceEntityRepository
         }
     }
 
+    public function interventionsWithCity(): array
+    {
+        $query = $this->createQueryBuilder('i')
+            ->addSelect('h', 'l', 'a')
+            ->leftJoin('i.horse', 'h')
+            ->leftJoin('h.hoster', 'l')
+            ->leftJoin('l.adressHoster', 'a')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Intervention[] Returns an array of Intervention objects
 //     */
