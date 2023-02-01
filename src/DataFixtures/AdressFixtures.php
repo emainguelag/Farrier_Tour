@@ -33,32 +33,32 @@ class AdressFixtures extends Fixture
                 'lon' => '4.943321',
             ],
             [
-                'firstLine' => 'quelquepart',
+                'firstLine' => '25 rue des Haras Nationaux',
                 'postalCode' => '71250',
                 'city' => 'CLUNY',
                 'lat' => '46.4339138',
                 'lon' => '4.6575708',
             ],
             [
-                'firstLine' => '20 impasse du puits',
+                'firstLine' => 'allée de l\'arquebuse',
                 'postalCode' => '01290',
                 'city' => 'GRIEGES',
                 'lat' => '46.2561',
                 'lon' => '4.85219',
             ],
             [
-                'firstLine' => '20 impasse du puits',
+                'firstLine' => '18 chemin des alouettes',
                 'postalCode' => '01390',
                 'city' => 'MONTHIEUX',
                 'lat' => '45.9567069',
                 'lon' => '4.9410766',
             ],
             [
-                'firstLine' => '20 impasse du puits',
+                'firstLine' => '258 rue de Limas',
                 'postalCode' => '69480',
                 'city' => 'POMMIERS',
-                'lat' => '49.3935702',
-                'lon' => '3.2720429',
+                'lat' => '45.9554834',
+                'lon' => '4.6917672',
             ],            
         ];
         foreach ($samples as $key => $sample) {

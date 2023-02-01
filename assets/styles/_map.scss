@@ -3,9 +3,8 @@
 @import "~@ansur/leaflet-pulse-icon/dist/L.Icon.Pulse.css";
 
 #map {
-    background-color: #e83e8c;
+    background-color: $component-active-color;
     position: sticky;
-    top: 0;
-    left: 0;
-    height: 300px;
+    height: 50vh;
+    max-width: 80%;
 }
