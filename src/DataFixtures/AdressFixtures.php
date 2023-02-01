@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use App\Entity\Adress;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
 
 class AdressFixtures extends Fixture
 {
