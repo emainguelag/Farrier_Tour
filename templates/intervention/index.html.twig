@@ -3,19 +3,18 @@
 {% block title %}Intervention index{% endblock %}
 
 {% block body %}
-    <h1>Intervention index</h1>
-
+    <h1>Liste des interventions</h1>
+    <p class="lead">Pour gérer les interventions.</p>
+    <hr />
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>StartDate</th>
-                <th>EndDate</th>
-                <th>Service</th>
-                <th>HorseShoeSize</th>
-                <th>Done</th>
-                <th>Pathologies</th>
-                <th>Comments</th>
+                <th>Début</th>
+                <th>Fin</th>
+                <th>Prestation</th>
+                <th>Lieu</th>
+                <th>Réalisé</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -26,10 +25,8 @@
                 <td>{{ intervention.startDate ? intervention.startDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ intervention.endDate ? intervention.endDate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ intervention.service }}</td>
-                <td>{{ intervention.horseShoeSize }}</td>
+                <td>{{ intervention.horse.hoster.adressHoster.city }}</td>
                 <td>{{ intervention.done ? 'Yes' : 'No' }}</td>
-                <td>{{ intervention.pathologies }}</td>
-                <td>{{ intervention.comments }}</td>
                 <td>
                     <a href="{{ path('app_intervention_show', {'id': intervention.id}) }}">show</a>
                     <a href="{{ path('app_intervention_edit', {'id': intervention.id}) }}">edit</a>
