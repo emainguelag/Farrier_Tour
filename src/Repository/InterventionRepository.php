@@ -46,6 +46,7 @@ class InterventionRepository extends ServiceEntityRepository
             ->leftJoin('i.horse', 'h')
             ->leftJoin('h.hoster', 'l')
             ->leftJoin('l.adressHoster', 'a')
+            ->orderBy('i.startDate', 'ASC')
             ->getQuery();
 
         return $query->getResult();

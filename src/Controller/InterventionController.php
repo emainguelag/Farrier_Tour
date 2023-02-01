@@ -21,6 +21,14 @@ class InterventionController extends AbstractController
         ]);
     }
 
+    #[Route('/tour', name: 'app_intervention_tour', methods: ['GET'])]
+    public function myTour(InterventionRepository $interventionRepository): Response
+    {
+        return $this->render('intervention/tour.html.twig', [
+            'interventions' => $interventionRepository->interventionsWithCity(),
+        ]);
+    }
+
     #[Route('/new', name: 'app_intervention_new', methods: ['GET', 'POST'])]
     public function new(Request $request, InterventionRepository $interventionRepository): Response
     {

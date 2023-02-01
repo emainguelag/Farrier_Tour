@@ -26,7 +26,7 @@ class AdressCoordinatesSubscriber implements EventSubscriber
     ];
   }
 
-  public function preUpdate(LifecycleEventArgs $args)
+  public function preUpdate(EventLifecycleEventArgs $args)
   {
     $entity = $args->getObject();
 
@@ -35,7 +35,7 @@ class AdressCoordinatesSubscriber implements EventSubscriber
     }
   }
 
-  public function prePersist(LifecycleEventArgs $args)
+  public function prePersist(EventLifecycleEventArgs $args)
   {
     $entity = $args->getObject();
 
