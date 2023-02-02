@@ -3,58 +3,120 @@
 {% block title %}Horse{% endblock %}
 
 {% block body %}
-    <h1>{{ horse.name }}</h1>
-    <p class="lead">Pour tout savoir sur un cheval.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-9">
+                <h1>{{ horse.name }}</h1>
+                <p class="lead">Pour tout savoir sur un cheval.</p>
+            </div>
+            <div class="col-3">
+                <img src="{{ asset('build/images/doowie.jpg') }}" alt="horse_picture" width="80" height="80" class="img-thumbnail">
+            </div>
+        </div>
+    </div>
     <hr />
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ horse.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ horse.name }}</td>
-            </tr>
-            <tr>
-                <th>Nickname</th>
-                <td>{{ horse.nickname }}</td>
-            </tr>
-            <tr>
-                <th>BirthDate</th>
-                <td>{{ horse.birthDate ? horse.birthDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ horse.type }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ horse.sexe }}</td>
-            </tr>
-            <tr>
-                <th>Color</th>
-                <td>{{ horse.color }}</td>
-            </tr>
-            <tr>
-                <th>Sire</th>
-                <td>{{ horse.sire }}</td>
-            </tr>
-            <tr>
-                <th>Transponder</th>
-                <td>{{ horse.transponder }}</td>
-            </tr>
-            <tr>
-                <th>Duration</th>
-                <td>{{ horse.duration }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="row align-items-center">
+                    <div class="col-10 col-md-12">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>Propriétaire</th>
+                                    <td>
+                                        <a href="{{ path('app_customer_show', {'id': horse.owner.id}) }}">
+                                            {{ horse.owner.name }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Hébergeur</th>
+                                    <td>
+                                        <a href="{{ path('app_hoster_show', {'id': horse.hoster.id}) }}">
+                                            {{ horse.hoster.name }}
+                                        </a><br>
+                                        {{ horse.hoster.adressHoster.firstLine}} - {{ horse.hoster.adressHoster.PostalCode}} {{ horse.hoster.adressHoster.city}}
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Surnom</th>
+                                    <td>{{ horse.nickname }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date de naissance</th>
+                                    <td>{{ horse.birthDate ? horse.birthDate|date('Y-m-d') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Type</th>
+                                    <td>{{ horse.type }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Sexe</th>
+                                    <td>{{ horse.sexe }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Robe</th>
+                                    <td>{{ horse.color }}</td>
+                                </tr>
+                                <tr>
+                                    <th>N° Sire</th>
+                                    <td>{{ horse.sire }}</td>
+                                </tr>
+                                <tr>
+                                    <th>N° de transponder</th>
+                                    <td>{{ horse.transponder }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Durée moyenne entre les interventions</th>
+                                    <td>{{ horse.duration }} semaines</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-2 col-md-12 text-center">
+                        <a href="{{ path('app_horse_edit', {'id': horse.id}) }}">Modifier</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 bg-dark">
+                <h3>Les interventions de {{ horse.name }}</h3>
+                    <table class="table">
+                        <tbody>
+                            {% for intervention in horse.interventions %}
 
-    <a href="{{ path('app_horse_index') }}">back to list</a>
+                                <div class="accordion" id="accordionExample">
+                                    <div class="accordion-item mb-2">
+                                        <h2 class="accordion-header" id="heading{{loop.index}}">
+                                            <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{loop.index}}" aria-expanded="true" aria-controls="collapse{{loop.index}}">
+                                                <img src="{{ asset('build/images/horseshoe.png') }}" alt="horseshoe" width="28" height="28" class="rounded-circle">
+                                                   {{ intervention.startDate ? intervention.startDate | format_date(pattern='dd MMMM yyyy ', locale='fr') : '' }} - 
+                                                {{ intervention.service }}
+                                            </button>
+                                        </h2>
+                                        <div id="collapse{{loop.index}}" class=" collapse" aria-labelledby="heading{{loop.index}}" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <strong>Taille de fer: </strong> {{ intervention.horseShoeSize }} <br>
+                                                <strong>Pathologies: </strong> {{ intervention.pathologies }} <br>
+                                                <strong>Commentaires: </strong> {{ intervention.comments }} <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <tr>
+                                    <td colspan="9">Pas d'interventions enregistrées</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>    
+            </div>
+        </div>
+    </div>
 
-    <a href="{{ path('app_horse_edit', {'id': horse.id}) }}">edit</a>
-
-    {{ include('horse/_delete_form.html.twig') }}
+    <div class="col-12 pt-5 ps-2">
+        <a href="{{ path('app_horse_index') }}">Retour à la liste</a>
+    </div>
 {% endblock %}

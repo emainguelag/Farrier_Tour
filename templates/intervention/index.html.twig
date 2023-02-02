@@ -11,7 +11,7 @@
             <tr>
                 <th>Id</th>
                 <th>Début</th>
-                <th>Fin</th>
+                <th>Cheval</th>
                 <th>Prestation</th>
                 <th>Lieu</th>
                 <th>Réalisé</th>
@@ -22,8 +22,8 @@
         {% for intervention in interventions %}
             <tr>
                 <td>{{ intervention.id }}</td>
-                <td>{{ intervention.startDate ? intervention.startDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ intervention.endDate ? intervention.endDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ intervention.startDate ? intervention.startDate|date('d-m-Y') : '' }}</td>
+                <td>{{ intervention.horse.name }}</td>
                 <td>{{ intervention.service }}</td>
                 <td>{{ intervention.horse.hoster.adressHoster.city }}</td>
                 <td>{{ intervention.done ? 'Yes' : 'No' }}</td>

@@ -9,11 +9,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Nickname</th>
+                <th>Nom</th>
+                <th>Surnom</th>
                 <th>Type</th>
                 <th>Sexe</th>
-                <th>Color</th>
+                <th>Robe</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -26,8 +26,8 @@
                 <td>{{ horse.sexe }}</td>
                 <td>{{ horse.color }}</td>
                 <td>
-                    <a href="{{ path('app_horse_show', {'id': horse.id}) }}">show</a>
-                    <a href="{{ path('app_horse_edit', {'id': horse.id}) }}">edit</a>
+                    <a href="{{ path('app_horse_card', {'id': horse.id}) }}">Détail</a>
+                    <a href="{{ path('app_horse_edit', {'id': horse.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -38,5 +38,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_horse_new') }}">Create new</a>
+    <a href="{{ path('app_horse_new') }}">Ajouter un cheval</a>
 {% endblock %}
