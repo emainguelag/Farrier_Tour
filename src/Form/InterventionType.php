@@ -23,37 +23,75 @@ class InterventionType extends AbstractType
             ->add('startDate', DateTimeType::class, [
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
-                'attr' => ['class' => 'form-control mt-2 mb-2'],
+                'attr' => ['class' => 'form-control'],
+                'label' => 'Début:',
+                'label_attr' => [
+                    'class' => 'd-block'
+                ],
             ])
             ->add('endDate', DateTimeType::class, [
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
                 'attr' => ['class' => 'form-control mt-2 mb-2'],
+                'label' => 'Fin:',
+                'label_attr' => [
+                    'class' => 'd-block'
+                ],
             ])
             ->add('service', ChoiceType::class, [
                 'choices' => [
                     'Parage' => 'Parage',
                     'Ferrage' => 'Ferrage',
-                ]
+                ],
+                'label' => 'Prestation:',
+                'label_attr' => [
+                    'class' => 'd-block'
+                ],
             ])
             ->add('horseShoeSize', IntegerType::class, [
                 'required' => false,
+                'attr' => [
+                    'placeholder' => 'saisir la taille de fer le cas échéant',
+                ],
+                'label' => 'Taille de fer:',
+                'label_attr' => [
+                    'class' => 'd-block'
+                ],
             ])
             ->add('done', CheckboxType::class, [
                 'required' => false,
+                'label' => 'Réalisé (oui/non)',
                 'label_attr' => [
                     'class' => 'checkbox-switch',
                 ],
             ])
             ->add('pathologies', TextareaType::class, [
                 'required' => false,
+                'attr' => [
+                    'placeholder' => 'saisir les pathologies le cas échéant',
+                ],
+                'label' => 'Pathologies:',
+                'label_attr' => [
+                    'class' => 'd-block',
+                ],
             ])
             ->add('comments', TextareaType::class, [
                 'required' => false,
+                'attr' => [
+                    'placeholder' => 'saisir les commentaires le cas échéant',
+                ],
+                'label' => 'Commentaires:',
+                'label_attr' => [
+                    'class' => 'd-block',
+                ],
             ])
             ->add('horse', EntityType::class, [
                 'class' => Horse::class,
                 'choice_label' => 'name',
+                'label' => 'Cheval:',
+                'label_attr' => [
+                    'class' => 'd-block',
+                ],
             ])
         ;
     }

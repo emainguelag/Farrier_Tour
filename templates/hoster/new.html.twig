@@ -3,9 +3,11 @@
 {% block title %}New Hoster{% endblock %}
 
 {% block body %}
-    <h1>Create new Hoster</h1>
-
-    {{ include('hoster/_form.html.twig') }}
-
-    <a href="{{ path('app_hoster_index') }}">back to list</a>
+    <h1>Créer un nouvel hébergeur</h1>
+    <div class="p-3">
+        {{ include('hoster/_form.html.twig') }}
+    </div>
+    <div class="p-3">
+        <a href="{{ path('app_hoster_index') }}">Retour à la liste</a>
+    </div>
 {% endblock %}

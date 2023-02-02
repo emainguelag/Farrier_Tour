@@ -6,6 +6,7 @@ use App\Entity\Intervention;
 use App\Form\InterventionType;
 use App\Form\MyTourType;
 use App\Repository\InterventionRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +26,9 @@ class InterventionController extends AbstractController
     #[Route('/tour', name: 'app_intervention_tour', methods: ['GET', 'POST'])]
     public function myTour(InterventionRepository $interventionRepository, Request $request): Response
     {
+        $today = new DateTime('now');
+        $today = $today->format("Y-m-d");
+
         $form = $this->createForm(MyTourType::class);
         $form->handleRequest($request);
 
@@ -32,7 +36,7 @@ class InterventionController extends AbstractController
             $search = $form->getData()['Date']->format("Y-m-d");
             $interventions = $interventionRepository->interventionsAtDate($search);
         } else {
-            $interventions = $interventionRepository->interventionsWithCityLimit();
+            $interventions = $interventionRepository->interventionsWithCityLimit($today);
         }
 
         return $this->render('intervention/tour.html.twig', [

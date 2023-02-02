@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Horse;
 use App\Form\HorseType;
 use App\Repository\HorseRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,8 +52,16 @@ class HorseController extends AbstractController
     #[Route('/card/{id}', name: 'app_horse_card', methods: ['GET'])]
     public function showCard(Horse $horse): Response
     {
+        $age = '';
+        $birthDate = $horse->getBirthDate();
+        if (isset($birthDate)) {
+            $today = new DateTime('now');
+            $age = $horse->getBirthDate()->diff($today);
+        }
+
         return $this->render('horse/horseCard.html.twig', [
             'horse' => $horse,
+            'age' => $age,
         ]);
     }
 

@@ -9,19 +9,19 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
+                <th>Adresse</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for hoster in hosters %}
             <tr>
-                <td>{{ hoster.id }}</td>
                 <td>{{ hoster.name }}</td>
+                <td>{{ hoster.adressHoster.firstLine }} - {{ hoster.adressHoster.PostalCode }} {{ hoster.adressHoster.city }}</td>
                 <td>
-                    <a href="{{ path('app_hoster_show', {'id': hoster.id}) }}">show</a>
-                    <a href="{{ path('app_hoster_edit', {'id': hoster.id}) }}">edit</a>
+                    <a href="{{ path('app_hoster_show', {'id': hoster.id}) }}">Voir</a>
+                    <a href="{{ path('app_hoster_edit', {'id': hoster.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -32,5 +32,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_hoster_new') }}">Create new</a>
+    <a href="{{ path('app_hoster_new') }}">Ajouter un nouvel hébergeur</a>
 {% endblock %}

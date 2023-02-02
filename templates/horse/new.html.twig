@@ -3,9 +3,11 @@
 {% block title %}New Horse{% endblock %}
 
 {% block body %}
-    <h1>Create new Horse</h1>
-
-    {{ include('horse/_form.html.twig') }}
-
-    <a href="{{ path('app_horse_index') }}">back to list</a>
+    <h1>Créer un nouveau cheval</h1>
+    <div class="p-3">
+        {{ include('horse/_form.html.twig') }}
+    </div>
+    <div class="p-3">
+        <a href="{{ path('app_horse_index') }}">Retour à la liste</a>
+    </div>
 {% endblock %}

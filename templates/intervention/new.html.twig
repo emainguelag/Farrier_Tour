@@ -3,9 +3,11 @@
 {% block title %}New Intervention{% endblock %}
 
 {% block body %}
-    <h1>Create new Intervention</h1>
-
+    <h1>Créer une nouvelle intervention</h1>
+<div class="p-3">
     {{ include('intervention/_form.html.twig') }}
-
-    <a href="{{ path('app_intervention_index') }}">back to list</a>
+    </div>
+<div class="p-3">
+    <a href="{{ path('app_intervention_index') }}">Retour à la liste</a>
+    </div>
 {% endblock %}

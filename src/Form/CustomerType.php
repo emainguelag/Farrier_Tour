@@ -18,28 +18,50 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'label' => 'Nom:',
+                'label_attr' => [
+                    'class' => 'd-block'
+                ],
+                'attr' => [
+                    'placeholder' => 'saisir le nom',
+                ]
+            ])
             ->add('phoneNumber', TelType::class, [
                 'required'      => false,
+                'label' => 'N° téléphone fixe:',
+                'label_attr' => [
+                    'class' => 'd-block'
+                ],
+                'attr' => [
+                    'placeholder' => 'saisir le numéro de téléphone fixe',
+                ]
             ])
-            ->add('mobilePhone', TelType::class)
-            ->add('email', EmailType::class)
-            // ->add('adressCustomer', EntityType::class, [
-            //     'class' => Adress::class,
-            //     'choice_label' => 'id',
-            //     'multiple' => true,
-            //     'expanded' => true,
-            //     'by_reference' => false,
-            // ])
-            ->add('adressCustomer', EntityType::class, [
-                'class' => Adress::class,
-                'label' => 'Ville',
-                'choice_label' => 'city',
+            ->add('mobilePhone', TelType::class, [
+                'label' => 'N° téléphone mobile:',
+                'label_attr' => [
+                    'class' => 'd-block'
+                ],
+                'attr' => [
+                    'placeholder' => 'saisir le numéro de téléphone mobile',
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'E-mail:',
+                'label_attr' => [
+                    'class' => 'd-block'
+                ],
+                'attr' => [
+                    'placeholder' => 'saisir le mail',
+                ]
             ])
             ->add('adressCustomer', EntityType::class, [
                 'class' => Adress::class,
                 'label' => 'Adresse',
                 'choice_label' => 'firstLine',
+                'label_attr' => [
+                    'class' => 'd-block'
+                ],
             ])
         ;
     }
