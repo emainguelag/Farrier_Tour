@@ -9,7 +9,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Début</th>
                 <th>Cheval</th>
                 <th>Prestation</th>
@@ -21,15 +20,14 @@
         <tbody>
         {% for intervention in interventions %}
             <tr>
-                <td>{{ intervention.id }}</td>
                 <td>{{ intervention.startDate ? intervention.startDate|date('d-m-Y') : '' }}</td>
                 <td>{{ intervention.horse.name }}</td>
                 <td>{{ intervention.service }}</td>
                 <td>{{ intervention.horse.hoster.adressHoster.city }}</td>
                 <td>{{ intervention.done ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_intervention_show', {'id': intervention.id}) }}">show</a>
-                    <a href="{{ path('app_intervention_edit', {'id': intervention.id}) }}">edit</a>
+                    <a href="{{ path('app_intervention_show', {'id': intervention.id}) }}">Voir</a>
+                    <a href="{{ path('app_intervention_edit', {'id': intervention.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -40,5 +38,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_intervention_new') }}">Create new</a>
+    <a href="{{ path('app_intervention_new') }}">Ajouter une nouvelle intervention</a>
 {% endblock %}

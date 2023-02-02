@@ -9,7 +9,7 @@
 
 {% block body %}
     <h1>Ma tournée</h1>
-    <p class="lead">Pour préparer mon trajet du jour.</p>
+    <p class="lead">Pour préparer mes trajets.</p>
     <hr />
 
     <div class="row gx-4 gy-4 p-3 justify-content-center">
@@ -41,7 +41,7 @@
                                 data-service="{{ intervention.service }}"
                                 data-lat="{{ intervention.horse.hoster.adressHoster.latitude }}"
                                 data-lng="{{ intervention.horse.hoster.adressHoster.longitude }}">
-                                <td>{{ intervention.startDate ? intervention.startDate|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ intervention.startDate ? intervention.startDate|date('d-m-Y H:i') : '' }}</td>
                                 <td>
                                     <a href="{{ path('app_horse_card', {'id': intervention.horse.id}) }}">
                                         {{ intervention.horse.name }}

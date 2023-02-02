@@ -9,12 +9,10 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>FirstLine</th>
-                <th>SecondLine</th>
-                <th>PostalCode</th>
-                <th>City</th>
-                <th>Country</th>
+                <th>N° et voie</th>
+                <th>Complément d'adresse</th>
+                <th>Code postal</th>
+                <th>Ville</th>
                 <th>Latitude</th>
                 <th>Longitude</th>
                 <th>actions</th>
@@ -23,17 +21,15 @@
         <tbody>
         {% for adress in adresses %}
             <tr>
-                <td>{{ adress.id }}</td>
                 <td>{{ adress.firstLine }}</td>
                 <td>{{ adress.secondLine }}</td>
                 <td>{{ adress.PostalCode }}</td>
                 <td>{{ adress.city }}</td>
-                <td>{{ adress.country }}</td>
                 <td>{{ adress.latitude }}</td>
                 <td>{{ adress.longitude }}</td>
                 <td>
-                    <a href="{{ path('app_adress_show', {'id': adress.id}) }}">show</a>
-                    <a href="{{ path('app_adress_edit', {'id': adress.id}) }}">edit</a>
+                    <a href="{{ path('app_adress_show', {'id': adress.id}) }}">Voir</a>
+                    <a href="{{ path('app_adress_edit', {'id': adress.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -44,5 +40,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_adress_new') }}">Create new</a>
+    <a href="{{ path('app_adress_new') }}">Ajouter une adresse</a>
 {% endblock %}

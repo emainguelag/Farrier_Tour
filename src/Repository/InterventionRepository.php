@@ -53,13 +53,15 @@ class InterventionRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function interventionsWithCityLimit(): array
+    public function interventionsWithCityLimit($value): array
     {
         $query = $this->createQueryBuilder('i')
             ->addSelect('h', 'l', 'a')
             ->leftJoin('i.horse', 'h')
             ->leftJoin('h.hoster', 'l')
             ->leftJoin('l.adressHoster', 'a')
+            ->andWhere('i.startDate >= :val')
+            ->setParameter('val', $value . '%')
             ->orderBy('i.startDate', 'ASC')
             ->setMaxResults(25)
             ->getQuery();

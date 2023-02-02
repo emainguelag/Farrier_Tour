@@ -47,7 +47,11 @@
                                 </tr>
                                 <tr>
                                     <th>Date de naissance</th>
-                                    <td>{{ horse.birthDate ? horse.birthDate|date('Y-m-d') : '' }}</td>
+                                    <td>{{ horse.birthDate ? horse.birthDate|date('d-m-Y') : '' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Age</th>
+                                    <td>{{ age ? age|date('%y ans') : '' }} </td>
                                 </tr>
                                 <tr>
                                     <th>Type</th>
@@ -90,13 +94,13 @@
                                 <div class="accordion" id="accordionExample">
                                     <div class="accordion-item mb-2">
                                         <h2 class="accordion-header" id="heading{{loop.index}}">
-                                            <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{loop.index}}" aria-expanded="true" aria-controls="collapse{{loop.index}}">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{loop.index}}" aria-expanded="true" aria-controls="collapse{{loop.index}}">
                                                 <img src="{{ asset('build/images/horseshoe.png') }}" alt="horseshoe" width="28" height="28" class="rounded-circle">
                                                    {{ intervention.startDate ? intervention.startDate | format_date(pattern='dd MMMM yyyy ', locale='fr') : '' }} - 
                                                 {{ intervention.service }}
                                             </button>
                                         </h2>
-                                        <div id="collapse{{loop.index}}" class=" collapse" aria-labelledby="heading{{loop.index}}" data-bs-parent="#accordionExample">
+                                        <div id="collapse{{loop.index}}" class="accordion-collapse collapse" aria-labelledby="heading{{loop.index}}" data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
                                                 <strong>Taille de fer: </strong> {{ intervention.horseShoeSize }} <br>
                                                 <strong>Pathologies: </strong> {{ intervention.pathologies }} <br>
