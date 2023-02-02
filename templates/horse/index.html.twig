@@ -9,32 +9,22 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Nickname</th>
-                <th>BirthDate</th>
                 <th>Type</th>
                 <th>Sexe</th>
                 <th>Color</th>
-                <th>Sire</th>
-                <th>Transponder</th>
-                <th>Duration</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for horse in horses %}
             <tr>
-                <td>{{ horse.id }}</td>
                 <td>{{ horse.name }}</td>
                 <td>{{ horse.nickname }}</td>
-                <td>{{ horse.birthDate ? horse.birthDate|date('Y-m-d') : '' }}</td>
                 <td>{{ horse.type }}</td>
                 <td>{{ horse.sexe }}</td>
                 <td>{{ horse.color }}</td>
-                <td>{{ horse.sire }}</td>
-                <td>{{ horse.transponder }}</td>
-                <td>{{ horse.duration }}</td>
                 <td>
                     <a href="{{ path('app_horse_show', {'id': horse.id}) }}">show</a>
                     <a href="{{ path('app_horse_edit', {'id': horse.id}) }}">edit</a>

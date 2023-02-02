@@ -48,6 +48,14 @@ class HorseController extends AbstractController
         ]);
     }
 
+    #[Route('/card/{id}', name: 'app_horse_card', methods: ['GET'])]
+    public function showCard(Horse $horse): Response
+    {
+        return $this->render('horse/horseCard.html.twig', [
+            'horse' => $horse,
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'app_horse_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Horse $horse, HorseRepository $horseRepository): Response
     {
