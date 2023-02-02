@@ -1,19 +1,90 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home
+{% endblock %}
 
 {% block stylesheets %}
-{{ parent() }}
+	{{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-    <h3>Vertical Sidebar that switches to Horizontal Navbar</h3>
-        <p class="lead">An example multi-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single menu is be open at a time.</p>
-        <hr />
-        <h3>More content...</h3>
-        <p>Sriracha biodiesel taxidermy organic post-ironic, Intelligentsia salvia mustache 90's code editing brunch. Butcher polaroid VHS art party, hashtag Brooklyn deep v PBR narwhal sustainable mixtape swag wolf squid tote bag. Tote bag cronut semiotics, raw denim deep v taxidermy messenger bag. Tofu YOLO Etsy, direct trade ethical Odd Future jean shorts paleo. Forage Shoreditch tousled aesthetic irony, street art organic Bushwick artisan cliche semiotics ugh synth chillwave meditation. Shabby chic lomo plaid vinyl chambray Vice. Vice sustainable cardigan, Williamsburg master cleanse hella DIY 90's blog.</p>
-        <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
-                    
+	<h3 class="text-primary">My Farrier Tour</h3>
+	<p class="lead">Application complète pour les maréchaux: gestion des rendez vous, fiches clients, fiches cheval, facturation, gestion de stock et optimisation des tournées.</p>
+	<hr/>
+
+	<div class="container">
+		<div class="row gx-4 gy-4 align-items-center">
+            <div class="col-md-6">
+			    <div class="bg-dark p-3">
+				    <h3>Interventions du jour</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Début</th>
+                                <th>Cheval</th>
+                                <th>Prestation</th>
+                                <th>Lieu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for intervention in interventions %}
+                            <tr class="">
+                                <td>{{ intervention.startDate ? intervention.startDate|date('H:i') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('app_horse_card', {'id': intervention.horse.id}) }}">
+                                        {{ intervention.horse.name }}
+                                    </a>
+                                </td>
+                                <td>{{ intervention.service }}</td>
+                                <td>{{ intervention.horse.hoster.adressHoster.city }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="9">Pas d'interventions prévues aujourd'hui</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>    
+                </div>
+			</div>
+			<div class="col-md-6">
+                <div class="row gx-4 gy-4">
+                    <div class="bg-dark p-3">
+                        <h3>Rechercher dans mes clients et mes chevaux</h3>
+                        <form action="" method="post" class="d-flex flex-column  bg-light shadow rounded px-3 pt-3">
+                            <label class="text-center text_user rounded bg-light" for="username"></label>
+                            <input type="text" id="username" name="_username">
+                            <button class="btn text-success">Rechercher</button>
+                        </form>
+                    </div>
+                    <div class="bg-dark p-3">
+                        <h3>Commandes à faire</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Produit</th>
+                                    <th>Quantité minimum</th>
+                                    <th>Quantité restante</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="">
+                                    <td>Fer Antérieur Mustad Libero Equi 1 pinçon Taille 2</td>
+                                    <td>6</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr class="">
+                                    <td>Plaque Delpano Combi cuir plat</td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                </tr>
+                            </tbody>
+                        </table>    
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
 
 {% endblock %}
