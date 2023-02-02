@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Intervention;
 use App\Form\InterventionType;
+use App\Form\MyTourType;
 use App\Repository\InterventionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,11 +22,22 @@ class InterventionController extends AbstractController
         ]);
     }
 
-    #[Route('/tour', name: 'app_intervention_tour', methods: ['GET'])]
-    public function myTour(InterventionRepository $interventionRepository): Response
+    #[Route('/tour', name: 'app_intervention_tour', methods: ['GET', 'POST'])]
+    public function myTour(InterventionRepository $interventionRepository, Request $request): Response
     {
+        $form = $this->createForm(MyTourType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['Date']->format("Y-m-d");
+            $interventions = $interventionRepository->interventionsAtDate($search);
+        } else {
+            $interventions = $interventionRepository->interventionsWithCityLimit();
+        }
+
         return $this->render('intervention/tour.html.twig', [
-            'interventions' => $interventionRepository->interventionsWithCity(),
+            'interventions' => $interventions,
+            'form' => $form,
         ]);
     }
 

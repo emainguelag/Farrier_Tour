@@ -17,6 +17,11 @@ L.Icon.Default.mergeOptions({
 require('leaflet-easybutton');
 require('@ansur/leaflet-pulse-icon');
 
+// import horseIconImage from "../images/icons-horse-stable"
+var horseIcon = L.icon({
+    iconUrl: require('leaflet/dist/images/marker-icon.png'),  
+});
+
 const horseLocations = document.getElementsByClassName('horseLocation');
 
 var markers = []; // Nous initialisons la liste des marqueurs
@@ -34,7 +39,7 @@ function initMap() {
     // var marker = L.marker([lat, lon]).addTo(myMap);
 
     for (const location of horseLocations) {
-        var marker = L.marker([location.dataset.lat, location.dataset.lng]).addTo(myMap);
+        var marker = L.marker([location.dataset.lat, location.dataset.lng], {icon: horseIcon}).addTo(myMap);
         marker.bindPopup("<b>" + location.dataset.name + "</b><br>" + location.dataset.service).openPopup();
         markers.push(marker); // Nous ajoutons le marqueur à la liste des marqueurs
     }  
