@@ -12,38 +12,49 @@
     <p class="lead">Pour préparer mon trajet du jour.</p>
     <hr />
 
-    <div class="row gx-4 gy-4">
-        <div id="map" class="col-lg-6 ms-3"></div>
+    <div class="row gx-4 gy-4 p-3 justify-content-center">
+        <div id="map" class="col-lg-6"></div>
 
-        <div class="col-lg-5">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Début</th>
-                        <th>Cheval</th>
-                        <th>Prestation</th>
-                        <th>Lieu</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for intervention in interventions %}
-                    <tr class="horseLocation" 
-                        data-name="{{ intervention.horse.name }}"
-                        data-service="{{ intervention.service }}"
-                        data-lat="{{ intervention.horse.hoster.adressHoster.latitude }}"
-                        data-lng="{{ intervention.horse.hoster.adressHoster.longitude }}">
-                        <td>{{ intervention.startDate ? intervention.startDate|date('Y-m-d H:i:s') : '' }}</td>
-                        <td>{{ intervention.horse.name }}</td>
-                        <td>{{ intervention.service }}</td>
-                        <td>{{ intervention.horse.hoster.adressHoster.city }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="9">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+        <div class="col-lg-6">
+            <div class="row justify-content-center">
+                <div class="pickDate w-75 mb-4"> 
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button class="btn text-success">{{ button_label|default('Sélectionner') }}</button>
+                    {{ form_end(form) }}   
+                </div>
+
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Début</th>
+                                <th>Cheval</th>
+                                <th>Prestation</th>
+                                <th>Lieu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for intervention in interventions %}
+                            <tr class="horseLocation" 
+                                data-name="{{ intervention.horse.name }}"
+                                data-service="{{ intervention.service }}"
+                                data-lat="{{ intervention.horse.hoster.adressHoster.latitude }}"
+                                data-lng="{{ intervention.horse.hoster.adressHoster.longitude }}">
+                                <td>{{ intervention.startDate ? intervention.startDate|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ intervention.horse.name }}</td>
+                                <td>{{ intervention.service }}</td>
+                                <td>{{ intervention.horse.hoster.adressHoster.city }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="9">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>    
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

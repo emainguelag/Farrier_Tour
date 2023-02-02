@@ -52,6 +52,35 @@ class InterventionRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function interventionsWithCityLimit(): array
+    {
+        $query = $this->createQueryBuilder('i')
+            ->addSelect('h', 'l', 'a')
+            ->leftJoin('i.horse', 'h')
+            ->leftJoin('h.hoster', 'l')
+            ->leftJoin('l.adressHoster', 'a')
+            ->orderBy('i.startDate', 'ASC')
+            ->setMaxResults(25)
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function interventionsAtDate($value): array
+    {
+        $query = $this->createQueryBuilder('i')
+            ->addSelect('h', 'l', 'a')
+            ->leftJoin('i.horse', 'h')
+            ->leftJoin('h.hoster', 'l')
+            ->leftJoin('l.adressHoster', 'a')
+            ->andWhere('i.startDate LIKE :val')
+            ->setParameter('val', $value . '%')
+            ->orderBy('i.startDate', 'ASC')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Intervention[] Returns an array of Intervention objects
 //     */
