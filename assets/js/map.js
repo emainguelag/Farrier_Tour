@@ -17,9 +17,9 @@ L.Icon.Default.mergeOptions({
 require('leaflet-easybutton');
 require('@ansur/leaflet-pulse-icon');
 
-// import horseIconImage from "../images/icons-horse-stable"
+import horseIconImage from "/assets/images/icons-horse-stable.png"
 var horseIcon = L.icon({
-    iconUrl: require('leaflet/dist/images/marker-icon.png'),  
+    iconUrl: horseIconImage,  
 });
 
 const horseLocations = document.getElementsByClassName('horseLocation');
