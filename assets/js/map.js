@@ -36,8 +36,6 @@ function initMap() {
         attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
     }).addTo(myMap);
 
-    // var marker = L.marker([lat, lon]).addTo(myMap);
-
     for (const location of horseLocations) {
         var marker = L.marker([location.dataset.lat, location.dataset.lng], {icon: horseIcon}).addTo(myMap);
         marker.bindPopup("<b>" + location.dataset.name + "</b><br>" + location.dataset.service).openPopup();
