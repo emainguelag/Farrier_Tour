@@ -153,7 +153,7 @@ class Adress
     {
         if (!$this->farriers->contains($farrier)) {
             $this->farriers->add($farrier);
-            $farrier->setAdress($this);
+            $farrier->setAdressFarrier($this);
         }
 
         return $this;
@@ -163,8 +163,8 @@ class Adress
     {
         if ($this->farriers->removeElement($farrier)) {
             // set the owning side to null (unless already changed)
-            if ($farrier->getAdress() === $this) {
-                $farrier->setAdress(null);
+            if ($farrier->getAdressFarrier() === $this) {
+                $farrier->setAdressFarrier(null);
             }
         }
 
@@ -183,7 +183,7 @@ class Adress
     {
         if (!$this->customers->contains($customer)) {
             $this->customers->add($customer);
-            $customer->setAdress($this);
+            $customer->setAdressCustomer($this);
         }
 
         return $this;
@@ -193,8 +193,8 @@ class Adress
     {
         if ($this->customers->removeElement($customer)) {
             // set the owning side to null (unless already changed)
-            if ($customer->getAdress() === $this) {
-                $customer->setAdress(null);
+            if ($customer->getAdressCustomer() === $this) {
+                $customer->setAdressCustomer(null);
             }
         }
 
@@ -213,7 +213,7 @@ class Adress
     {
         if (!$this->hosters->contains($hoster)) {
             $this->hosters->add($hoster);
-            $hoster->setAdress($this);
+            $hoster->setAdressHoster($this);
         }
 
         return $this;
@@ -223,8 +223,8 @@ class Adress
     {
         if ($this->hosters->removeElement($hoster)) {
             // set the owning side to null (unless already changed)
-            if ($hoster->getAdress() === $this) {
-                $hoster->setAdress(null);
+            if ($hoster->getAdressHoster() === $this) {
+                $hoster->setAdressHoster(null);
             }
         }
 
